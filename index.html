@@ -70,7 +70,7 @@ body {
     <div class="orientation-data">
       <div>Beta: <span id="tiltFB"></span></div>
       <div>Gamma: <span id="tiltLR"></span></div>
-      <div>Alpha: <span id="direction"></span></div>
+      <div>Angle <span id="direction"></span> deg.</div>
     </div>
     <div id="notice"></div>
 
@@ -87,7 +87,7 @@ if (window.DeviceOrientationEvent) {
     // alpha: The direction the compass of the device aims to in degrees.
     const dir = eventData.alpha
     // Call the function to use the data on the page.
-    deviceOrientationHandler(tiltLR, tiltFB, dir);
+    deviceOrientationHandler(tiltLR, tiltFB, 360-dir);
   }, false);
 } else {
   document.getElementById('notice').innerHTML = 'No API detected'
@@ -96,7 +96,7 @@ if (window.DeviceOrientationEvent) {
 function deviceOrientationHandler(tiltLR, tiltFB, dir) {
   document.getElementById('tiltLR').innerHTML = Math.ceil(tiltLR);
   document.getElementById('tiltFB').innerHTML = Math.ceil(tiltFB);
-  document.getElementById('direction').innerHTML = Math.ceil(360-dir);
+  document.getElementById('direction').innerHTML = Math.ceil(dir);
   // Rotate the disc of the compass. - CSS transform
   const compassDisc = document.getElementById('compassDiscImg');
   compassDisc.style.transform = `rotate(${dir}deg)`;

@@ -87,7 +87,7 @@ if (window.DeviceOrientationEvent) {
     // alpha: The direction the compass of the device aims to in degrees.
     const dir = eventData.alpha
     // Call the function to use the data on the page.
-    deviceOrientationHandler(tiltLR, tiltFB, 360-dir);
+    deviceOrientationHandler(tiltLR, tiltFB, dir);
   }, false);
 } else {
   document.getElementById('notice').innerHTML = 'No API detected'
